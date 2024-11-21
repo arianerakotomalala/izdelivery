@@ -8,8 +8,8 @@
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ asset('img/svg/Logo.svg') }}" type="image/x-icon">
     <!-- Custom styles -->
-    <link rel="stylesheet" href="{{ asset('css/style.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('css copy/style.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css copy/styles.css') }}">
 </head>
 
 <body>
@@ -30,7 +30,7 @@
 
         <div class="sidebar-body">
             <ul class="sidebar-body-menu">
-                <li><a href="{{ route('welcome') }}"><span class="icon home" aria-hidden="true"></span>Tableau de bord</a></li>
+                <li><a href="{{ route('dashboard') }}"><span class="icon home" aria-hidden="true"></span>Tableau de bord</a></li>
                 <li><a href="{{ route('users.index') }}"><span class="icon document" aria-hidden="true"></span>Client</a></li>
                 <li>
                     <a class="show-cat-btn" href="#">

@@ -5,14 +5,16 @@ use App\Http\Controllers\InscriptionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 
-Route::get('/', function () {  
+Route::get('/', function () {
     return view('welcome');
 });
 
-//***************ROUTES POUR LE CLIENT**************************//
+/*
+|--------------------------------------------------------------------------
+|                     C L I E N T
+|--------------------------------------------------------------------------*/
 
 
-//LOGIN*****
 Route::prefix('/login')->controller(LoginController::class)->name('login')->group(function(){
     //authentification
     Route::get('/','blade_login');
@@ -37,7 +39,7 @@ Route :: prefix('client')->controller(CclientController::class)->name('client.')
     //condition-collaboration
     Route::get('/condition-de-collaboration','condition')->name('collaboration');
 
-    //a propos 
+    //a propos
     Route::get('/a-propos','propos')->name('propos');
 
     //commander
@@ -46,11 +48,9 @@ Route :: prefix('client')->controller(CclientController::class)->name('client.')
 
 });
 
-############################ A..D..M..I..N..I..S..T..R..A..T..I..O..N #############
-
 /*
 |--------------------------------------------------------------------------
-| A D M I N I S T R A T I O N
+|                       A D M I N I S T R A T I O N
 |--------------------------------------------------------------------------*/
 
 use App\Http\Controllers\ClientController;
@@ -82,23 +82,23 @@ Route::get('/', [AuthController::class, 'showLoginForm'])->name('admin.login');
     Route::post('admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
 
     Route::middleware(['auth:admin'])->group(function () {
-        Route::get('/welcome', [AuthController::class, 'welcome'])->name('welcome');
+        Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
     });
 
     use App\Http\Controllers\UserController;
 
     Route::put('/users/{id}/valider', [UserController::class, 'validerClient'])->name('users.valider');
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
-    
+
     // Formulaire pour créer un utilisateur
     Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
-    
+
     // Enregistrement d'un nouvel utilisateur
     Route::post('/users', [UserController::class, 'store'])->name('users.store');
-    
+
     // Détails d'un utilisateur
     Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
-    
+
     // Validation d'un utilisateur
     Route::put('/users/{id}/valider', [UserController::class, 'validerClient'])->name('users.valider');
 

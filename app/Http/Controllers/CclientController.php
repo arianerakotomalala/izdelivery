@@ -1,18 +1,18 @@
 <?php
 namespace App\Http\Controllers;
 use App\Http\Requests\CommandeRequest;
-use App\Models\Commande;
+use App\Models\Ccommande;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class CclientController extends Controller
 {
-//acceuil 
+//acceuil
     public function blade_acceuil():View {
     return view('client.acceuil');
 }
 
-//Commandes       
+//Commandes
     public function blade_commander() {
         return view('client.commander');
     }
@@ -27,9 +27,8 @@ class CclientController extends Controller
             'type_colis' => $request['type_colis'],
             'lieu_livraison' => $request['lieu_livraison'],
         ]);
-        
-        Commande::create($nouveau_commmande);
-        
+        Ccommande::create($nouveau_commmande);
+
         return redirect()->route('client.commander.form',['commandes'=>$nouveau_commmande])->with('success', 'Commande envoye avec succes, On arrive :)');
     }
 

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
@@ -19,9 +18,8 @@ class ConfirmationUtilisateur extends Mailable
     public function __construct()
 
     {
-                
-    }
 
+    }
     /**
      * Get the message envelope.
      */
@@ -41,7 +39,6 @@ class ConfirmationUtilisateur extends Mailable
             view: 'view.name',
         );
     }
-
     /**
      * Get the attachments for the message.
      *

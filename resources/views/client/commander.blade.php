@@ -54,7 +54,7 @@
         margin-right: 10px; /* Espace entre les champs */
     }
 
-    
+
 </style>
 
 @extends('client.navigation')
@@ -149,6 +149,7 @@
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
+                    {{-- lieu de livraison --}}
                     <div class="mb-3">
                         <label for="lieu_livraison" class="form-label">Lieu de livraison</label>
                         <input class="form-control @error('lieu_livraison') is-invalid @enderror" type="text" name="lieu_livraison" value="{{ old('lieu_livraison') }}">

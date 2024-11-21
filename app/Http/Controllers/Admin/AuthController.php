@@ -28,7 +28,7 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::guard('admin')->attempt($credentials)) {
-            return redirect()->route('welcome');
+            return redirect()->route('dashboard');
         }
 
         return back()->withErrors([
@@ -62,8 +62,8 @@ class AuthController extends Controller
     }
 
     // Tableau de bord de l'admin
-    public function welcome()
+    public function dashboard()
     {
-        return view('welcome');
+        return view('dashboard');
     }
 }
