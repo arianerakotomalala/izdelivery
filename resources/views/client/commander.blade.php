@@ -69,7 +69,7 @@
         @endif
         <div class="card-body">
             <h2 class="text-center mb-4">Les informations concernant votre colis !</h2>
-            <form action="" method="POST">
+            <form action="{{ route('client.commander.submit') }}" method="POST">
                 @csrf
                 <!-- Type de colis et durabilité -->
                 <div class="single-line-form">
@@ -117,20 +117,21 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="heure_livraison" class="form-label">Heure de livraison</label>
-                        <select class="form-control @error('heure_livraison') is-invalid @enderror" name="heure_livraison">
-                            @php $i = 6; @endphp
-                            @while($i <= 19)
-                                <option value="{{$i.'hr- '.($i+1).' hr'}}" {{ old('heure_livraison') == $i ? 'selected' : '' }}>
-                                    {{ $i . ' hr - ' . ($i + 1) . ' hr' }}
-                                </option>
-                                @php $i++; @endphp
-                            @endwhile
-                        </select>
-                        @error('heure_livraison')
-                            <div class="text-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
+                    <label for="heure_livraison" class="form-label">Heure de livraison</label>
+                    <select class="form-control @error('heure_livraison') is-invalid @enderror" name="heure_livraison">
+                        @php $i = 6; @endphp
+                        @while($i <= 19)
+                            <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) . ':00-' . str_pad($i + 1, 2, '0', STR_PAD_LEFT) . ':00' }}" {{ old('heure_livraison') == str_pad($i, 2, '0', STR_PAD_LEFT) . ':00-' . str_pad($i + 1, 2, '0', STR_PAD_LEFT) . ':00' ? 'selected' : '' }}>
+                                {{ $i . ' hr - ' . ($i + 1) . ' hr' }}
+                            </option>
+                            @php $i++; @endphp
+                        @endwhile
+                    </select>
+                    @error('heure_livraison')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
                 </div>
 
                 <!-- Poids du colis -->
@@ -157,6 +158,19 @@
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
+                    {{-- Mode de paiement --}}
+                    <div class="mb-3">
+                        <label for="mode_payement" class="form-label">Mode de paiement</label>
+                        <select class="form-control @error('mode_payement') is-invalid @enderror" name="mode_payement" value="{{ old('mode_payement') }}">
+                            <option value="cash" {{ old('mode_payement') == 'cash' ? 'selected' : '' }}>Cash</option>
+                            <option value="carte" {{ old('mode_payement') == 'carte' ? 'selected' : '' }}>Carte bancaire</option>
+                            <option value="mobile_money" {{ old('mode_payement') == 'mobile_money' ? 'selected' : '' }}>Mobile Money</option>
+                        </select>
+                        @error('mode_payement')
+                    <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
                 </div>
                 <!-- Bouton d'envoi -->
                 <div class="row">

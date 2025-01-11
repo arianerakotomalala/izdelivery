@@ -9,43 +9,17 @@
     <style>
         /* Image de fond */
         body {
-            background-image: url('{{ asset('img/box.jpg') }}');
-            background-size: cover;
-            background-position: center center;
-            color: #fff;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
+            background-image:url('{{ asset('img/box.jpg') }}');
+            background-size:cover;
+            background-position:center center;
+            color:#fff;
+            font-family:Arial, sans-serif;
+            margin:0;
+            padding:0;
+            height:100%;
+            display:flex;
+            flex-direction:column;
         }
-
-        /* Liens superposés sur l'image */
-        .image-container {
-            position: relative;
-            width: 100%;
-            height: 500px;
-        }
-        .image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-      
-
-        /* Animation du texte */
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translate(-50%, -60%);
-            }
-            100% {
-                opacity: 1;
-                transform: translate(-50%, -50%);
-            }
-        }
-        
 
         /* Navbar sans couleur de fond avec liens ronds */
         .navbar {
@@ -58,36 +32,38 @@
             margin: 0 15px;
             padding: 12px 20px;
             border-radius: 50%; /* Liens entourés d'un cercle */
-            font-size: 25px;
+            font-size: 18px;
             transition: all 0.3s ease;
-    
         }
         .navbar-nav .nav-link:hover {
-            background-color: rgba(255, 255, 255, 0.5);
+            background-color: rgba(255, 255, 255, 0.3);
             color: #fff;
             text-decoration: none;
-           text-decoration: 1px solid white;
-           border-radius: 3px
+            border-radius: 5px;
         }
 
         /* Footer avec les informations de contact toujours en bas */
         .footer-contact {
-            background-color: #ffffff;
-            color: rgb(0, 0, 0);
-            padding: ;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #000;
+            padding: 15px 0;
             text-align: center;
             margin-top: auto; /* Pousse le footer en bas */
         }
         .contact-info {
             font-size: 14px;
+            margin-bottom: 10px;
         }
         .social-icons img {
             width: 24px;
             margin: 0 8px;
-            background-color: black;
             border-radius: 5px;
         }
 
+        /* Supprime les marges indésirables pour les containers */
+        .container-fluid {
+            padding: 0;
+        }
     </style>
 </head>
 <body>
@@ -105,7 +81,7 @@
                         <a class="nav-link" href="{{ route('client.acceuil') }}">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('client.collaboration') }}">Conditions de collaboration</a>
+                        <a class="nav-link" href="{{ route('client.collaboration') }}">Conditions</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('client.propos')}}">À propos</a>
@@ -137,9 +113,10 @@
         </div>
     </nav>
 
-    
+    <!-- Contenu principal -->
     @yield('contenu')
-    <!-- Footer avec les informations de contact toujours en bas -->
+
+    <!-- Footer -->
     <div class="footer-contact">
         <div class="contact-info">
             <span><i class="fa fa-phone"></i> +261 34 12 345 67 |</span>

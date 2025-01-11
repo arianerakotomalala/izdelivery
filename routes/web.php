@@ -42,9 +42,16 @@ Route :: prefix('client')->controller(CclientController::class)->name('client.')
     //a propos
     Route::get('/a-propos','propos')->name('propos');
 
-    //commander
-    Route::get('/commander', 'blade_commander')->name('commander.form')->middleware(['auth']);
-    Route::post('/commander', 'action_commander')->name('commander.submit')->middleware(['auth']);
+    // Commander
+
+
+Route::middleware(['auth'])->group(function () {
+    // Route pour afficher le formulaire de commande
+    Route::get('/commander', [CclientController::class, 'blade_commander'])->name('commander.form');
+
+    // Route pour soumettre le formulaire de commande
+    Route::post('/commander', [CclientController::class, 'action_commander'])->name('commander.submit');
+});
 
 });
 
@@ -69,7 +76,9 @@ use App\Http\Controllers\LivreurController;
 Route::get('/livreurs', [LivreurController::class, 'index'])->name('livreurs.index');
 Route::get('/livreurs/create', [LivreurController::class, 'create'])->name('livreurs.create');
 Route::post('/livreurs', [LivreurController::class, 'store'])->name('livreurs.store');
-
+Route::get('/livreurs/liste', [LivreurController::class, 'listeLivreurs'])->name('livreurs.liste');
+Route::get('/livreurs/emploi-du-temps', [LivreurController::class, 'emploiDuTemps'])->name('livreurs.emploi_du_temps');
+Route::delete('/livreurs/{livreur}', [LivreurController::class, 'destroy'])->name('livreurs.destroy');
 use App\Http\Controllers\Admin\AuthController;
 
 Route::get('/', [AuthController::class, 'showLoginForm'])->name('admin.login');
@@ -105,9 +114,9 @@ Route::get('/', [AuthController::class, 'showLoginForm'])->name('admin.login');
 //});
 use App\Http\Controllers\CommandeController;
 Route::get('/commande/{id}/assign', [CommandeController::class, 'assignerLivreurVehicule'])->name('commande.assign');
-Route::get('/commande/{id}/assign', [CommandeController::class, 'assignerLivreurVehicule'])->name('commande.assign');
-Route::put('/commande/{id}/assign', [CommandeController::class, 'assignerLivreurVehiculeStore'])->name('commande.assign.store');
+Route::post('/commande/{id}/assign', [CommandeController::class, 'assignerLivreurVehiculeStore'])->name('commande.assign.store');
 Route::get('/commande', [CommandeController::class, 'index'])->name('commande.index');
+Route::get('/commande/{id}', [CommandeController::class, 'show'])->name('commande.show');
 //Route::get('/das/formulaire', [EleveController::class, 'formulaire'])->name('das.formulaire');
 //Route::post('/das/formulaire', [EleveController::class, 'store'])->name('eleves.store');
 //Route::get('/', function () {

@@ -18,9 +18,11 @@ class Livreur extends Authenticatable
         $this->attributes['password'] = bcrypt($password);
     }
     // Livreur.php
+// Dans le modèle Livreur
 public function commandes()
 {
-    return $this->hasMany(Commande::class);
+    return $this->hasMany('App\Models\Ccommande');
 }
+
 
 }

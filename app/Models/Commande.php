@@ -14,9 +14,10 @@ class Commande extends Model
         'produit',
         'livreur_id',
         'vehicule_id',
+        'adresse',
         'status',
     ];
-    
+
 
     public function livreur()
     {
@@ -32,6 +33,6 @@ class Commande extends Model
     {
         return $this->belongsTo(User::class);
     }
-    
+
 }
 

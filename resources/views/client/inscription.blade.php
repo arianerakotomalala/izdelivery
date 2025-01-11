@@ -21,7 +21,7 @@
             margin: 0;
         }
         .left-section {
-            background-image: url('{{ asset('img.jpg') }}');
+            background-image: url('{{ asset('img/acc.jpg') }}');
             background-size: cover;
             background-position: center;
             border-radius: 10px 0 0 10px;
